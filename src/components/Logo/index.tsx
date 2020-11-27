@@ -4,7 +4,7 @@ import * as S from './styles'
 import { LogoProps } from './types'
 
 const Logo: FC<LogoProps> = ({
-  color = 'white',
+  color = 'black',
   size = 'normal',
   hideOnMobile = false
 }) => (

@@ -9,14 +9,14 @@ describe('<Logo />', () => {
     it('should render white label by default', () => {
       const { container } = renderWithLightTheme(<Logo />)
       expect(screen.getByLabelText(/Won Games/i).parentElement).toHaveStyle({
-        color: '#FAFAFA'
+        color: '#030517'
       })
       expect(container.firstChild).toMatchSnapshot()
     })
     it('should render black label when color is passed', () => {
-      const { container } = renderWithLightTheme(<Logo color="black" />)
+      const { container } = renderWithLightTheme(<Logo color="white" />)
       expect(screen.getByLabelText(/Won Games/i).parentElement).toHaveStyle({
-        color: '#030517'
+        color: '#FAFAFA'
       })
       expect(container.firstChild).toMatchSnapshot()
     })
