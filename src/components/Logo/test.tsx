@@ -46,7 +46,4 @@ describe('<Logo />', () => {
       expect(container.firstChild).toMatchSnapshot()
     })
   })
-
-  describe('DarkTheme', () => {})
-  describe('AccessibilityTheme', () => {})
 })
