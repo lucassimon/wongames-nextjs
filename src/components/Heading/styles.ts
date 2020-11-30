@@ -1,36 +1,51 @@
 import styled, { css, DefaultTheme } from 'styled-components'
 import media from 'styled-media-query'
-import { HeadingProps } from './types'
 
-const headingModifier = {
-  lineLeft: (theme: DefaultTheme) => css`
-    padding-left: ${theme.spacings.xxsmall};
-    border-left: 0.7rem solid ${theme.colors.secondary};
-  `,
-  lineBottom: (theme: DefaultTheme) => css`
-    position: relative;
-    margin-bottom: ${theme.spacings.medium};
+import { HeadingProps, LineColors } from './types'
+
+const wrapperModifiers = {
+  small: (theme: DefaultTheme) => css`
+    font-size: ${theme.font.sizes.medium};
+
     &::after {
-      position: absolute;
-      content: '';
-      left: 0;
-      bottom: -0.5rem;
-      width: 5rem;
-      border-bottom: 0.5rem solid ${theme.colors.primary};
+      width: 3rem;
     }
-  `
-}
+  `,
 
-export const Heading = styled.h2<HeadingProps>`
-  ${({ theme, color, lineLeft, lineBottom }) => css`
-    color: ${theme.colors[color!]};
+  medium: (theme: DefaultTheme) => css`
     font-size: ${theme.font.sizes.xlarge};
 
     ${media.greaterThan('medium')`
       font-size: ${theme.font.sizes.xxlarge};
     `}
+  `,
 
-    ${lineLeft && headingModifier.lineLeft(theme)}
-    ${lineBottom && headingModifier.lineBottom(theme)}
+  lineLeft: (theme: DefaultTheme, lineColor: LineColors) => css`
+    padding-left: ${theme.spacings.xxsmall};
+    border-left: 0.7rem solid ${theme.colors[lineColor]};
+  `,
+
+  lineBottom: (theme: DefaultTheme, lineColor: LineColors) => css`
+    position: relative;
+    margin-bottom: ${theme.spacings.medium};
+
+    &::after {
+      position: absolute;
+      left: 0;
+      bottom: -0.5rem;
+      content: '';
+      width: 5rem;
+      border-bottom: 0.5rem solid ${theme.colors[lineColor]};
+    }
+  `
+}
+
+export const Heading = styled.h2<HeadingProps>`
+  ${({ theme, color, lineLeft, lineBottom, lineColor, size }) => css`
+    color: ${theme.colors[color!]};
+
+    ${lineLeft && wrapperModifiers.lineLeft(theme, lineColor!)}
+    ${lineBottom && wrapperModifiers.lineBottom(theme, lineColor!)}
+    ${!!size && wrapperModifiers[size](theme)}
   `}
 `
