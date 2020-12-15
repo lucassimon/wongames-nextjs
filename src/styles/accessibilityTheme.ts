@@ -14,8 +14,8 @@ export default {
     darkGray: '#2E2F42',
     red: '#FF6347'
   },
-  backgroundColor: 'red',
-  textColor: '#fafafa',
-  buttonBackgroundColor: '#eee',
-  buttonTextColor: '#222'
+  backgroundColor: '#fafafa',
+  textColor: '#000',
+  buttonBackgroundColor: '#222',
+  buttonTextColor: '#eee'
 } as const
